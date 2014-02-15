@@ -21,10 +21,10 @@ exports.configure = function (app) {
 				console.log('TODO User Already Exists error');
 			} else {
                 // console.log(req, req.body);
-                sql.query('INSERT INTO account SET ?', { username: req.body.username, password: sha.update(req.body.password).digest('hex') }, function (err) {
+                sql.query('INSERT INTO account SET ?', { username: req.body.username, password: sha.update(req.body.password).digest('hex') }, function (err, result) {
 					if (err) throw err;
 
-                    var newAccountId = 1 ; // FIX ME WAYNE
+                    var newAccountId = result.insertId;
 
                     var cli = new BitCli(app.get('config'));
                     cli.generateNewAddressSet(function(err, addresses) {
@@ -41,13 +41,27 @@ exports.configure = function (app) {
                             }
                         }
 
+
                         sql.query('INSERT INTO address (account_id, type, hash) VALUES ?', [values], function(err) {
                             if (err) throw err;
 
-                            console.log('TODO Successful Register');
+	                        sql.query('SELECT * FROM account WHERE id = ?', [newAccountId], function(err, rows) {
+		                        if (err) throw err;
 
+		                        var user = rows[0];
+
+		                        sql.query('SELECT * FROM address WHERE account_id = ?', [newAccountId], function(err, rows) {
+			                        if (err) throw err;
+
+			                        user.addresses = rows;
+
+			                        var passport = app.get('passport');
+			                        passport.login(user);
+
+			                        console.log('TODO Successful Register');
+		                        });
+	                        });
                         });
-
                     });
 				});
 			}
@@ -56,7 +70,7 @@ exports.configure = function (app) {
 
 	app.post('/login', function(req, res) {
 		var passport = app.get('passport');
-        passport.authenticate('local', { successRedirect: '/',
+        passport.authenticate('local', { successRedirect: '/account',
 			failureRedirect: '/login',
 			failureFlash: true });
 	});
