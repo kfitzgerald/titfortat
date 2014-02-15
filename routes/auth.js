@@ -2,8 +2,9 @@
  * Authentication pages.
  */
 
-var crypto = require('crypto');
-var sha = crypto.createHash('sha256');
+var crypto = require('crypto'),
+    sha = crypto.createHash('sha256'),
+    BitCli = require('./../lib/cli');
 
 exports.configure = function (app) {
     var sql = app.get('sql');
@@ -23,7 +24,31 @@ exports.configure = function (app) {
                 sql.query('INSERT INTO account SET ?', { username: req.body.username, password: sha.update(req.body.password).digest('hex') }, function (err) {
 					if (err) throw err;
 
-					console.log('TODO Successful Register');
+                    var newAccountId = 1 ; // FIX ME WAYNE
+
+                    var cli = new BitCli(app.get('config'));
+                    cli.generateNewAddressSet(function(err, addresses) {
+
+                        /* { titcoin: 'tFDwzanzueEY6huHh8SsKCWCAyXqiADc6A',
+                         tatcoin: 'TQcWvBWDgJgjZ7cu9GY1tX9a4quDNi4nAo',
+                         bitcoin: '1LmS9jMdB1sCnuP5yXaHxwcy4rFdgZZzCe' } */
+
+                        var values = [];
+
+                        for (var i in addresses) {
+                            if (addresses.hasOwnProperty(i)) {
+                                values.push([ newAccountId, i, addresses[i] ])
+                            }
+                        }
+
+                        sql.query('INSERT INTO address (account_id, type, hash) VALUES ?', [values], function(err) {
+                            if (err) throw err;
+
+                            console.log('TODO Successful Register');
+
+                        });
+
+                    });
 				});
 			}
 		});
