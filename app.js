@@ -37,8 +37,6 @@ if ('development' == app.get('env')) {
 	app.use(express.errorHandler());
 }
 
-// Routes
-routes.configure(app);
 
 /*
  * DATABASE
@@ -93,6 +91,10 @@ passport.use(new LocalStrategy(
 ));
 
 app.set('passport', passport);
+
+
+// Routes
+routes.configure(app);
 
 /*
  * SOMEBODY SET US UP THE BOMB
