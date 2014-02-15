@@ -17,7 +17,10 @@ var app = express();
 // All environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'public/views'));
-app.set('view engine', 'hjs');
+app.set('view engine', 'twig');
+app.set('twig options', {
+    strict_variables: false
+});
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());

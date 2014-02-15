@@ -10,5 +10,13 @@ exports.configure = function(app){
         res.send('your face');
     });
 
+    app.get('/register', function(req, res) {
+        res.render('register');
+    });
+
+    app.get('/login', function(req, res) {
+        res.render('login');
+    });
+
 	require('auth').configure(app);
-}
+};
