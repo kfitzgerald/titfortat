@@ -14,7 +14,7 @@ var socket  = require('./lib/socket');
  * EXPRESS & ENVIRONMENT
  */
 var app = express();
-
+app.set('config', config);
 // All environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'public/views'));
@@ -38,60 +38,10 @@ if ('development' == app.get('env')) {
 	app.use(express.errorHandler());
 }
 
+require('./lib/sql').configure(app);
+require('./lib/passport').configure(app);
 
-/*
- * DATABASE
- */
-var sql;
-function connectToDB(app) {
 
-	sql = mysql.createConnection(config.mysql); // Recreate the connection, since
-	// the old one cannot be reused.
-
-	sql.connect(function (err) {                       // The server is either down
-		if (err) {                                     // or restarting (takes a while sometimes).
-			console.log('error when connecting to db:', err);
-			setTimeout(connectToDB, 2000);             // We introduce a delay before attempting to reconnect,
-		}                                              // to avoid a hot loop, and to allow our node script to
-	});                                                // process asynchronous requests in the meantime.
-	                                                   // If you're also serving http, display a 503 error.
-	sql.on('error', function (err) {
-		console.log('db error', err);
-		if (err.code === 'PROTOCOL_CONNECTION_LOST') { // Connection to the MySQL server is usually
-			connectToDB();                             // lost due to either server restart, or a
-		} else {                                       // connection idle timeout (the wait_timeout
-			throw err;                                 // server variable configures this)
-		}
-	});
-
-	app.set('sql', sql);
-}
-
-connectToDB(app);
-
-/*
- * AUTH
- */
-var crypto = require('crypto');
-var sha = crypto.createHash('sha256');
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-passport.use(new LocalStrategy(
-	function(username, password, done) {
-		var sql = app.get('sql');
-        sql.query('SELECT * FROM account WHERE username = ? AND password = ?', {username: username, password: sha.update(password).digest('hex')}, function(err, rows) {
-			if (err) { return done(err); }
-
-			if(rows.length > 0) {
-				return done(null, rows[0]);
-			}
-
-			return done(null, false, { message: 'Invalid username or password.' });
-		});
-	}
-));
-
-app.set('passport', passport);
 
 
 // Routes
