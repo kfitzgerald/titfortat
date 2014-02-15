@@ -10,6 +10,7 @@
     "hjs": "*",
     "stylus": "*",
     "socket.io":"*",
+	"serialize":"*",
     "twig":"*"
   }
 }
