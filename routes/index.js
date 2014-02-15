@@ -2,7 +2,11 @@
 /*
  * GET home page.
  */
-
-exports.index = function(req, res){
-  res.render('index', { title: 'Express' });
-};
+exports.configure = function(app){
+    app.all('/', function(req, res){
+      res.render('index', { title: 'Express' });
+    });
+    app.all('/my_ass', function(req, res){
+        res.send('your face');
+    });
+}
