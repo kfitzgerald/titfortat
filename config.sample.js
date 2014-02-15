@@ -16,7 +16,8 @@ module.exports = exports = {
     mysql: {
         host: '127.0.0.1',
         user: 'titfortat',
-        password: 'your_password_here'
+        password: 'your_password_here',
+	    database: 'titfortat'
     },
 
     /**
