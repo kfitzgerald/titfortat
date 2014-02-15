@@ -3,10 +3,23 @@
  * GET home page.
  */
 exports.configure = function(app){
-    app.all('/', function(req, res){
-      res.render('index', { title: 'Express' });
+    app.get('/', function(req, res){
+        res.render('index', {
+            message : "Hello World"
+        });
     });
-    app.all('/my_ass', function(req, res){
-        res.send('your face');
+
+    app.get('/account', function(req, res) {
+        res.render('account', {
+            message : 'Account!'
+        })
     });
-}
+
+    app.get('/register', function(req, res) {
+        res.render('register');
+    });
+
+    app.get('/login', function(req, res) {
+        res.render('login');
+    })
+};

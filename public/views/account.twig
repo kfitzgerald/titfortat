@@ -1,0 +1,113 @@
+{% extends 'base.twig' %}
+
+{% block title %}My Account{% endblock %}
+
+{% block headerText %}My Account{% endblock %}
+
+{% block content %}
+    <div class="page-header">
+        <h3>Addresses</h3>
+    </div>
+    <div class="panel panel-default">
+        <table class="table">
+            <tbody class="table-hover">
+                <tr>
+                    <td><label for="tit-address">Tit:</label></td>
+                    <td><input id="tit-address" type="text" class="form-control" /></td>
+                </tr>
+                <tr>
+                    <td><label for="tat-address">Tat:</label></td>
+                    <td><input id="tat-address" type="text" class="form-control" /></td>
+                </tr>
+                <tr>
+                    <td><label for="bit-address">Bit:</label></td>
+                    <td><input id="bit-address" type="text" class="form-control" /></td>
+                </tr>
+                <tr>
+                    <td><label for="doge-address">Doge:</label></td>
+                    <td><input id="doge-address" type="text" class="form-control" /></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="page-header">
+        <h3>Trade</h3>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>Buy</h4>
+                </div>
+                <div class="panel-body">
+                    <form id="buy-form">
+                        <div class="input-group">
+                            <input type="text" id="buy-amount-field" class="form-control" placeholder="Amount" style="width:50%;" />
+                            <input type="text" id="buy-rate-field" class="form-control" placeholder="Rate" style="width:50%;" />
+                            <div class="input-group-btn">
+                                <button type="submit" id="buy-form-button" class="btn btn-default">Buy</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>Sell</h4>
+                </div>
+                <div class="panel-body">
+                    <form id="sell-form">
+                        <div class="input-group">
+                            <input type="text" id="sell-amount-field" class="form-control" placeholder="Amount" style="width:50%;" />
+                            <input type="text" id="sell-rate-field" class="form-control" placeholder="Rate" style="width:50%;" />
+                            <div class="input-group-btn">
+                                <button type="submit" id="sell-form-button" class="btn btn-default">Sell</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-header">
+        <h3>Orders</h3>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>Buy</h4>
+                </div>
+                <div class="panel-body">
+                    <ul class="list-group">
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>Sell</h4>
+                </div>
+                <div class="panel-body">
+                    <ul class="list-group">
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-header">
+        <h3>Recent</h3>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <ul class="list-group">
+
+            </ul>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.twig' %}
+{% block header %}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3>Login</h3>
+                </div>
+                <div class="panel-body">
+                    <form id="login-form">
+                        <div class="input-group" style="width:100%;">
+                            <input type="text" class="form-control" placeholder="Username" id="username" style="width:50%;" />
+                            <input type="password" class="form-control" placeholder="Password" id="password" style="width:50%;" />
+                        </div>
+                        <button type="submit" id="login-form-button" class="btn btn-primary pull-right">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
