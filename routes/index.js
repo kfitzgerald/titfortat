@@ -23,8 +23,10 @@ exports.configure = function(app){
 	require('./auth').configure(app);
 
     app.get('/test', function(req, res) {
-        var Order = require('./../lib/order'),
-            order = new Order(app);
+        var Market = require('./../lib/market'),
+            market = new Market(app);
+
+        market.run();
 
 //        // CREATE TEST
 //        order.create({
