@@ -22,7 +22,7 @@ exports.configure = function (app) {
 		});
 	});
 
-	app.post('/auth', function(req, res) {
+	app.post('/login', function(req, res) {
 		passport.authenticate('local', { successRedirect: '/',
 			failureRedirect: '/auth',
 			failureFlash: true });
