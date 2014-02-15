@@ -9,8 +9,10 @@
     "express": "3.4.7",
     "hjs": "*",
     "stylus": "*",
-    "socket.io":"*",
-	"serialize":"*",
-    "twig":"*"
+    "socket.io": "*",
+    "twig": "*",
+    "mysql": "~2.0.1",
+	"passport":"*",
+	"passport-local":"*"
   }
 }
