@@ -9,11 +9,11 @@
                     <h3>Register</h3>
                 </div>
                 <div class="panel-body">
-                    <form id="register-form">
-                        <input type="text" class="form-control" placeholder="Email" id="email" />
+                    <form id="register-form" method='POST'>
+                        {#<input type="text" class="form-control" placeholder="Email" id="email" />#}
                         <div class="input-group" style="width: 100%;">
-                            <input type="text" class="form-control" placeholder="Username" id="username" style="width:50%;" />
-                            <input type="password" class="form-control" placeholder="Password" id="password" style="width:50%;" />
+                            <input type="text" class="form-control" placeholder="Username" id="username" name='username' style="width:50%;" />
+                            <input type="password" class="form-control" placeholder="Password" id="password"   name='password' style="width:50%;" />
                         </div>
                         <button type="submit" id="register-form-button" class="btn btn-primary pull-right">Register</button>
                     </form>
