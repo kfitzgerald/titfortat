@@ -43,8 +43,8 @@ routes.configure(app);
 /*
  * DATABASE
  */
+var sql;
 function connectToDB(app) {
-	var sql;
 
 	sql = mysql.createConnection(config.mysql); // Recreate the connection, since
 	// the old one cannot be reused.
@@ -79,7 +79,8 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 passport.use(new LocalStrategy(
 	function(username, password, done) {
-		sql.query('SELECT * FROM account WHERE username = ? AND password = ?', {username: username, password: sha.update(password).digest('hex')}, function(err, rows) {
+		var sql = app.get('sql');
+        sql.query('SELECT * FROM account WHERE username = ? AND password = ?', {username: username, password: sha.update(password).digest('hex')}, function(err, rows) {
 			if (err) { return done(err); }
 
 			if(rows.length > 0) {
