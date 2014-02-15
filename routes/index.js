@@ -18,5 +18,5 @@ exports.configure = function(app){
         res.render('login');
     });
 
-	require('auth').configure(app);
+	require('./auth').configure(app);
 };

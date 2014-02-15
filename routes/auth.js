@@ -24,7 +24,7 @@ exports.configure = function (app) {
 
 	app.post('/login', function(req, res) {
 		passport.authenticate('local', { successRedirect: '/',
-			failureRedirect: '/auth',
+			failureRedirect: '/login',
 			failureFlash: true });
 	});
 }
