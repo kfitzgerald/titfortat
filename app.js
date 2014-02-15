@@ -43,19 +43,19 @@ routes.configure(app);
 /*
  * DATABASE
  */
-var sql;
+function connectToDB(app) {
+	var sql;
 
-function connectToDB() {
 	sql = mysql.createConnection(config.mysql); // Recreate the connection, since
 	// the old one cannot be reused.
 
-	sql.connect(function (err) {              // The server is either down
-		if (err) {                            // or restarting (takes a while sometimes).
+	sql.connect(function (err) {                       // The server is either down
+		if (err) {                                     // or restarting (takes a while sometimes).
 			console.log('error when connecting to db:', err);
-			setTimeout(connectToDB, 2000); // We introduce a delay before attempting to reconnect,
-		}                                  // to avoid a hot loop, and to allow our node script to
-	});                                    // process asynchronous requests in the meantime.
-	                                       // If you're also serving http, display a 503 error.
+			setTimeout(connectToDB, 2000);             // We introduce a delay before attempting to reconnect,
+		}                                              // to avoid a hot loop, and to allow our node script to
+	});                                                // process asynchronous requests in the meantime.
+	                                                   // If you're also serving http, display a 503 error.
 	sql.on('error', function (err) {
 		console.log('db error', err);
 		if (err.code === 'PROTOCOL_CONNECTION_LOST') { // Connection to the MySQL server is usually
@@ -64,9 +64,11 @@ function connectToDB() {
 			throw err;                                 // server variable configures this)
 		}
 	});
+
+	app.set('sql', sql);
 }
 
-connectToDB();
+connectToDB(app);
 
 /*
  * AUTH
@@ -88,6 +90,8 @@ passport.use(new LocalStrategy(
 		});
 	}
 ));
+
+app.set('passport', passport);
 
 /*
  * SOMEBODY SET US UP THE BOMB
