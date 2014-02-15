@@ -8,6 +8,7 @@ var routes = require('./routes');
 var http = require('http');
 var path = require('path');
 var mysql = require('mysql');
+var socket  = require('./lib/socket');
 
 /*
  * EXPRESS & ENVIRONMENT
@@ -97,6 +98,7 @@ app.set('passport', passport);
  * SOMEBODY SET US UP THE BOMB
  */
 var server = http.createServer(app).listen(app.get('port'), function () {
-	require('socket.io').listen(server, { log: false });
+
+    socket.configure(app, server);
 	console.log('Express server listening on port ' + app.get('port'));
 });
