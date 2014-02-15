@@ -9,4 +9,6 @@ exports.configure = function(app){
     app.all('/my_ass', function(req, res){
         res.send('your face');
     });
+
+	require('auth').configure(app);
 }
