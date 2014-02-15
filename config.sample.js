@@ -18,6 +18,16 @@ module.exports = exports = {
         user: 'titfortat',
         password: 'your_password_here',
 	    database: 'titfortat'
-    }
+    },
+
+    /**
+     * CLI Paths
+     */
+    cli: [
+        { name: 'titcoin',  cmd: '/opt/titcoin/bin/bitcoin-cli' },
+        { name: 'tatcoin',  cmd: '/opt/tatcoin/bin/bitcoin-cli' },
+        { name: 'dogecoin', cmd: '/opt/bitcoin/bin/bitcoin-cli -conf=dogecoin.conf -datadir=/home/_your_username_/.dogecoin' },
+        { name: 'bitcoin',  cmd: '/opt/bitcoin/bin/bitcoin-cli' }
+    ]
 
 };
