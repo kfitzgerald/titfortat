@@ -75,7 +75,8 @@ exports.configure = function (app) {
 			                        var passport = app.get('passport');
 
 			                        req.login(user, function(err) {
-				                        if (err) { return next(err); }
+				                        if (err) throw err;
+
 				                        return res.redirect('/account');
 			                        });
 
