@@ -5,3 +5,12 @@ body {
 a {
   color: #00b7ff;
 }
+
+#login-register-buttons a {
+	margin-right: 15px;
+}
+
+#register-form .input-group .form-control,
+#login-form .input-group .form-control {
+	margin-bottom: 15px;
+}

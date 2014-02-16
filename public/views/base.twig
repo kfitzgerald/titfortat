@@ -2,6 +2,7 @@
     <head>
         <title>Tit 4 Tat</title>
         <link href="/stylesheets/bootstrap.min.css" rel="stylesheet" />
+        <link href="/stylesheets/style.css" rel="stylesheet" />
     </head>
     <body class="container">
         <div id="header">
@@ -23,6 +24,7 @@
         <script src="/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="/socket.io/socket.io.js"></script>
         <script src="/js/main.js"></script>
-
+        {% block javascript %}
+        {% endblock %}
     </body>
 </html>
