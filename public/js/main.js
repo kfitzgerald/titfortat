@@ -1,12 +1,18 @@
 window.tit = tit = {
     intit:function(){
 
-        var socket = io.connect('http://localhost');
-        socket.on('news', function (data) {
+        this.socket = socket = io.connect('http://localhost');
+        this.socket.on('account.create', function (data) {
             console.log(data);
-            socket.emit('my other event', { my: 'data' });
         });
 
+    },
+    db:function(model, action, data){
+        this.socket.emit('db', {
+            model:model,
+            action:action,
+            data:data
+        });
     }
 }
 $(function(){

@@ -3,13 +3,58 @@
 {% block header %}
     <div class="jumbotron">
         <h1>tit for Tat</h1>
-        <div>
-            <a id="register-button" class="btn btn-success pull-right" href='/register'>Register</a>
-            <a id="login-button" class="btn btn-primary pull-right"  href='/login'>Login</a>
+        <div id="login-register-buttons">
+            <a id="register-button" class="btn btn-success pull-right" href="/register">Register</a>
+            <a id="login-button" class="btn btn-primary pull-right"  href="/login">Login</a>
         </div>
     </div>
 {% endblock %}
 
 {% block content %}
-<p>There should be some charts or something here...</p>
+    <div id="chart_div" style="width: 900px; height: 500px;text-align: center;margin: 0 auto;"><img src="http://i.imgur.com/OxxUDdj.jpg" /></div>
+{% endblock %}
+
+{% block javascript %}
+    {#<script type="text/javascript" src="https://www.google.com/jsapi"></script>#}
+    {#<script type="text/javascript">#}
+        {#google.load('visualization', '1', {packages: ['corechart']});#}
+    {#</script>#}
+    {#<script>#}
+        {#var arr = [#}
+            {#['Mon', 20, 28, 38, 45],#}
+            {#['Tue', 31, 38, 55, 66],#}
+            {#['Wed', 50, 55, 77, 80],#}
+            {#['Thu', 77, 77, 66, 50],#}
+            {#['Fri', 68, 66, 22, 15]#}
+            {#// Treat first row as data as well.#}
+        {#];#}
+        {#var iterations = 0;#}
+
+        {#function drawVisualization() {#}
+            {#var data = google.visualization.arrayToDataTable(arr, true);#}
+
+            {#var options = {#}
+                {#legend:'none'#}
+            {#};#}
+
+            {#if(iterations < 100) {#}
+                {#setTimeout(function() {#}
+                    {#iterations++;#}
+                    {#console.log('incrementing');#}
+                    {#for(var c = 0; c < arr.length; c++) {#}
+                        {#var item = arr[c];#}
+                        {#for(var d = 1; d < item.length;d++) {#}
+                            {#arr[c][d] = arr[c][d] + 1;#}
+                        {#}#}
+                    {#}#}
+                    {#drawVisualization();#}
+                {#},500);#}
+            {#}#}
+
+            {#var chart = new google.visualization.CandlestickChart(document.getElementById('chart_div'));#}
+            {#chart.draw(data, options);#}
+        {#}#}
+
+        {#google.setOnLoadCallback(drawVisualization);#}
+    {#</script>#}
 {% endblock %}
