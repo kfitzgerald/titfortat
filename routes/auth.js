@@ -73,7 +73,11 @@ exports.configure = function (app) {
 			                        user.addresses = rows;
 
 			                        var passport = app.get('passport');
-			                        passport.login(user);
+
+			                        req.login(user, function(err) {
+				                        if (err) { return next(err); }
+				                        return res.redirect('/account');
+			                        });
 
 			                        console.log('TODO Successful Register');
 		                        });
