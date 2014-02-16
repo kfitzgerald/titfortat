@@ -62,6 +62,7 @@ exports.configure = function (app) {
 		                        if (err) throw err;
 
 		                        console.log(7);
+		                        console.log(rows);
 
 		                        var user = rows[0];
 
@@ -72,10 +73,13 @@ exports.configure = function (app) {
 
 			                        user.addresses = rows;
 
+			                        console.log(user);
+
 			                        var passport = app.get('passport');
 
 			                        req.login(user, function(err) {
-				                        if (err) { return next(err); }
+				                        if (err) throw err;
+
 				                        return res.redirect('/account');
 			                        });
 
