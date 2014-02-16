@@ -9,27 +9,35 @@
         <h3>Addresses</h3>
     </div>
     <div class="panel panel-default">
-        <table class="table">
-            <tbody class="table-hover">
-                <tr>
-                    <td><label for="tit-address">Tit:</label></td>
-                    <td><input id="tit-address" type="text" class="form-control" /></td>
-                </tr>
-                <tr>
-                    <td><label for="tat-address">Tat:</label></td>
-                    <td><input id="tat-address" type="text" class="form-control" /></td>
-                </tr>
-                <tr>
-                    <td><label for="bit-address">Bit:</label></td>
-                    <td><input id="bit-address" type="text" class="form-control" /></td>
-                </tr>
-                <tr>
-                    <td><label for="doge-address">Doge:</label></td>
-                    <td><input id="doge-address" type="text" class="form-control" /></td>
-                </tr>
-            </tbody>
-        </table>
+        <form id='frm-address'>
+            <table class="table">
+                <tbody class="table-hover">
+                    <tr>
+                        <td><label for="tit-address">Tit:</label></td>
+                        <td><input id="tit-address" type="text" class="form-control txt-address" data-type='titcoin' /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="tat-address">Tat:</label></td>
+                        <td><input id="tat-address" type="text"  data-type='tatcoin' class="form-control txt-address" /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="bit-address">Bit:</label></td>
+                        <td><input id="bit-address" type="text"  data-type='bitcoin' class="form-control txt-address" /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="doge-address">Doge:</label></td>
+                        <td><input id="doge-address" type="text"  data-type='dodgecoin' class="form-control txt-address" /></td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+        <div class='panel-footer'>
+            <a href='#' class='btn btn-default btn-save-address'>
+                Save
+            </a>
+        </div>
     </div>
+
     <div class="page-header">
         <h3>Trade</h3>
     </div>
@@ -81,7 +89,7 @@
                     <h4>Buy</h4>
                 </div>
                 <div class="panel-body">
-                    <ul class="list-group">
+                    <ul id='buy-orders' class="list-group">
 
                     </ul>
                 </div>
@@ -93,7 +101,7 @@
                     <h4>Sell</h4>
                 </div>
                 <div class="panel-body">
-                    <ul class="list-group">
+                    <ul id='sell-orders' class="list-group">
 
                     </ul>
                 </div>
