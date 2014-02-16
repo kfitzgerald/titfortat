@@ -62,6 +62,7 @@ exports.configure = function (app) {
 		                        if (err) throw err;
 
 		                        console.log(7);
+		                        console.log(rows);
 
 		                        var user = rows[0];
 
@@ -71,6 +72,8 @@ exports.configure = function (app) {
 			                        console.log(8);
 
 			                        user.addresses = rows;
+
+			                        console.log(user);
 
 			                        var passport = app.get('passport');
 
