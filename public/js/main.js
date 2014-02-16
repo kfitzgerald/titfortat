@@ -31,7 +31,7 @@ window.tit = tit = {
     init_orders:function(){
 
        this.socket.on('order.get_by_account', function(orders){
-            console.log(orders);
+            tit.render_orders(orders);
        })
        this.db('order', 'get_by_account', this.account);
     },
@@ -41,7 +41,8 @@ window.tit = tit = {
         jBuyEle.empty();
         jSellEle.empty();
         for(var i in orders){
-            var html = '<li><a class="list-group-item">' + orders[i].ammount + ' - ' + orders[i].rate + '</a></li>';
+            console.log(orders[i]);
+            var html = '<li><a class="list-group-item">' + orders[i].amount + ' - ' + orders[i].rate + '</a></li>';
             if(orders[i].type == "BUY"){
                 jBuyEle.append(html);
             }else{
