@@ -9,33 +9,26 @@
         <h3>Addresses</h3>
     </div>
     <div class="panel panel-default">
-        <form id='frm-address'>
-            <table class="table">
-                <tbody class="table-hover">
-                    <tr>
-                        <td><label for="tit-address">Tit:</label></td>
-                        <td><input id="tit-address" type="text" class="form-control txt-address" data-type='titcoin' /></td>
-                    </tr>
-                    <tr>
-                        <td><label for="tat-address">Tat:</label></td>
-                        <td><input id="tat-address" type="text"  data-type='tatcoin' class="form-control txt-address" /></td>
-                    </tr>
-                    <tr>
-                        <td><label for="bit-address">Bit:</label></td>
-                        <td><input id="bit-address" type="text"  data-type='bitcoin' class="form-control txt-address" /></td>
-                    </tr>
-                    <tr>
-                        <td><label for="doge-address">Doge:</label></td>
-                        <td><input id="doge-address" type="text"  data-type='dodgecoin' class="form-control txt-address" /></td>
-                    </tr>
-                </tbody>
-            </table>
-        </form>
-        <div class='panel-footer'>
-            <a href='#' class='btn btn-default btn-save-address'>
-                Save
-            </a>
-        </div>
+        <table class="table">
+            <tbody class="table-hover">
+                <tr>
+                    <td><label for="tit-address">Tit:</label></td>
+                    <td><span id="tit-address">{{ user.addresses['titcoin'].address }}</span></td>
+                </tr>
+                <tr>
+                    <td><label for="tat-address">Tat:</label></td>
+                    <td><span id="tat-address">{{ user.addresses['tatcoin'].address }}</span></td>
+                </tr>
+                <tr>
+                    <td><label for="bit-address">Bit:</label></td>
+                    <td><span id="bit-address">{{ user.addresses['bitcoin'].address }}</span></td>
+                </tr>
+                <tr>
+                    <td><label for="doge-address">Doge:</label></td>
+                    <td><span id="doge-address">{{ user.addresses['dogecoin'].address }}</span></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
     <div class="page-header">
